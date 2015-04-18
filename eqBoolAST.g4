@@ -10,7 +10,7 @@ expr_bool returns [Composant c] :
 	|NON e1=expr_bool {Not n = new Not(); n.setIn($e1.c); circ.ajoutComposant(n);}
 	;
 
-equation :  ID '=' expr_bool ';' ;
+equation :  ID '=' out=expr_bool ';'{} ;
 
 circuit : 
 	'eq_circuit(' in=listeid {circ.setMapInterrupteurs($in.l);} ') returns (' 
@@ -20,11 +20,11 @@ commande : 'descr()' {circ.description();} | 'eval(' llb=listeb ')' {circ.eval($
 
 prog : circuit commande+ ;
 
-listeid returns [List<String> l] : ID s=suiteid* {$l.add($ID.text); $l.addAll($s.ls);};
-suiteid returns [List<String> ls] : ',' ID { $ls.add($ID.text);};
+listeid returns [List<String> l] : ID s=suiteid* {List<String> l_id = new ArrayList<String>(); l_id.add($ID.text); l_id.addAll($s.ls); $l=l_id;};
+suiteid returns [List<String> ls] : ',' ID {List<String> ls_id = new ArrayList<String>() ; ls_id.add($ID.text); $ls=ls_id;};
 
-listeb returns [List<String> lb] : bool sb=suiteb* {$lb.add($bool.text); $lb.addAll($sb.lsb);};
-suiteb returns [List<String> lsb] : ',' bool {$lsb.add($bool.text);};
+listeb returns [List<String> lb] : bool sb=suiteb* {List<String> l_b = new ArrayList<String>(); l_b.add($bool.text); l_b.addAll($sb.lsb); $lb=l_b;};
+suiteb returns [List<String> lsb] : ',' bool {List<String> ls_b = new ArrayList<String>(); ls_b.add($bool.text); $lsb=ls_b;};
 
 PARG : '(' ;
 PARD : ')' ;
