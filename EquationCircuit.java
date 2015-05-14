@@ -4,30 +4,26 @@ import java.lang.*;
 
 public class EquationCircuit extends Circuit {
 	
-	protected Map<String,Interrupteur> nameInterrupteurs = new LinkedHashMap<String,Interrupteur>();
-	protected Map<String,Vanne> nameVannes = new LinkedHashMap<String,Vanne>();
+	private Map<String,Interrupteur> nameInterrupteurs = new LinkedHashMap<String,Interrupteur>();
+	private Map<String,Vanne> nameVannes = new LinkedHashMap<String,Vanne>();
+	private List<Boolean> valeurs = new ArrayList<Boolean>();
 	
 	public EquationCircuit(String n){
 	    super(n);
-	};
+	}
 	
-	public void setMapInterrupteurs(List<String> l){				
-		for(String x : l){
-			Interrupteur in = new Interrupteur();
-			in.setName(x);
-			nameInterrupteurs.put(x,in);
-			this.ajoutComposant(in);	
-		}
+	public List<Boolean> getValuesArray(){
+		return valeurs;
 	}
-
-	public void setMapVannes(List<String> l){		
-		for(String x : l){
-			Vanne out = new Vanne();
-			out.setName(x);
-			nameVannes.put(x,out);
-			this.ajoutComposant(out);
-		}
+	
+	public Map<String,Interrupteur> getNameInterrupteurs(){
+		return nameInterrupteurs;
 	}
+	
+	public Map<String,Vanne> getNameVannes(){
+		return nameVannes;
+	}
+	
 	
 	public Interrupteur getInterrupteur(String name){
 		return nameInterrupteurs.get(name);
@@ -38,24 +34,28 @@ public class EquationCircuit extends Circuit {
 	}
 	
 	public void description(){
+		System.out.println("Description du circuit:");
 		super.description();
+		System.out.print("\n");
 	}
 	
-	public void eval(List<String> l){
+	public void eval(){
 		int i=0;
 		int j=0;
 		for(Interrupteur x : nameInterrupteurs.values()){
 			i=0;
-			for(String y : l){
+			for(boolean y : valeurs){
 				if(i==j){
-					if(y=="true") x.on();
-					if(y=="false") x.off();
+					if(y==true) x.on();
+					if(y==false) x.off();
 				}
 				i++;
 			}
 			j++;
 		}
+		System.out.println("Evaluation du circuit:");
 		super.traceEtats();
+		System.out.print("\n");
 	}
 	
 }

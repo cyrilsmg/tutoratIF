@@ -7,7 +7,7 @@
 public class Interrupteur extends Composant {
 	
 	public String description(){
-		return this.getId();
+		return this.getId() + " name: " +  this.getName();
 		}
 	
 	private String name;

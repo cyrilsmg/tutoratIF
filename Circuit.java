@@ -31,12 +31,12 @@ public class Circuit{
     }
     
     public void description(){
-        System.out.println(name);
+        System.out.println("Nom du circuit : " + name);
         System.out.println(this.nomenclature());
     }
     
     public void traceEtats(){
-        System.out.println(name);
+        System.out.println("Nom du circuit : " + name);
         for(Composant x : composants)   System.out.println(x.traceEtat());
     }
     

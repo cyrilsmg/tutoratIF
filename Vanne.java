@@ -24,7 +24,7 @@ public class Vanne extends Composant {
 		String info;
 		if(in != null) info = in.getId();
 		else info = "non connecte";
-		return this.getId() + " in : " + info;
+		return this.getId() + " name: " + this.getName() + " in : " + info ;
 		}
 	
 	public boolean getEtat() throws NonConnecteException {

@@ -20,7 +20,7 @@ public abstract class Composant implements Comparable<Composant>{
 		}
 	
 	public String traceEtat(){
-		try {return(this.description() +" "+ this.getEtat());}
+		try {return(this.description() +" état : "+ this.getEtat());}
 		catch (NonConnecteException ex) {return(this.description() +" "+  (this+" non connecte"));}
 		}
 	

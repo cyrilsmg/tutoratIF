@@ -1,5 +1,5 @@
 eq_circuit(i1,i2,i3) returns (o1,o2,o3)
-	o1=(i1&i2)|i3;
+	o1=((i1|i3)&i2);
 	o2=(i3&i1);
 	o3=i2;
 end
